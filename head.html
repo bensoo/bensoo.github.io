@@ -16,10 +16,34 @@ a:link       {COLOR: #000000; text-decoration:underline}
 a:visited       {COLOR: #000000; text-decoration:underline}
 a:hover       {COLOR: #000000; text-decoration:underline}
 -->
-</style></HEAD>
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+</HEAD>
+
+<script>
+function  showvalf(){  
+	var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次decodeRUI解码
+	var theRequest = new Object();
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		strs = str.split("&");
+		for (var i = 0; i < strs.length; i++) {
+			theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+		}
+		document.write(theRequest.que);
+	}
+
+document.getElementById('innn').value=theRequest.que;
+var goog = "https://seeres.com/search?q="+theRequest.que;
+var baid = "https://www.baidu.com/s?wd="+theRequest.que;
+document.getElementById('bai').href=baid;
+document.getElementById('goo').href=goog;
+}
+</script>
+
 <BODY>
-<?php
-$q=$_GET['que'];?>
+
  
  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 background=images/bg_toolbar.gif>
       
@@ -31,11 +55,25 @@ $q=$_GET['que'];?>
           <TD vAlign=top style="PADDING-LEFT: 10px; COLOR: #335997" nowrap><SPAN 
             style="FONT-WEIGHT: bold; COLOR: #000000">
 			
-            <form action="search.php" method="get" name="f" target=_parent>
-<p style="margin: 0px; padding: 0px;">  <a href="index.html" target="_top"><span class="style2">home</span></a>&nbsp;<a href="https://seeres.com/search?q=<?php echo $q;?>" target="_blank"><span class="style2">Google</span></a>&nbsp;<a href="https://www.baidu.com/s?wd=<?php echo $q;?>" target="_blank"><span class="style2">baidu</span></a></font>&nbsp;&nbsp;
-    <input size="30" name="que" type="text" value=<?php echo $q;?>>
-	&nbsp;
-	<input value="GO" type="submit">&nbsp;
-</center>
+            <form action="search.html" method="get" name="f" target=_parent onload="showvalf()">
+				<p style="margin: 0px; padding: 0px;">  
+				<a href="index.html" target="_top">
+					<span class="style2">home</span>
+				</a>
+				&nbsp;
+				<a id=goo href="" target="_blank">
+					<span class="style2">Google</span>
+				</a>
+				&nbsp;
+				<a id=baid href="" target="_blank">
+					<span class="style2">baidu</span>
+				</a>
+				</font>
+				&nbsp;
+				&nbsp;
+				<input id=innn size="30" name="que" type="text" value="">
+				&nbsp;
+				<input value="GO" type="submit">&nbsp;
+				</center>
             </form>
 </TD></TR></TABLE> 
