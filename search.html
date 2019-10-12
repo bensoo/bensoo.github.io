@@ -1,3 +1,17 @@
+<HTML><HEAD><TITLE>benso</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+
 <script type="text/javascript">
-document.write("<h1>Hello World!</h1>")
+var url = location.search;
+var Request = new Object();
+if(url.indexOf('?') != -1) {
+	var str = url.substr(1)　 //去掉?号
+	strs = str.split('&');
+	for(var i = 0; i < strs.length; i++) {
+		Request[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+	}
+}
+document.write(strs[0]);
 </script> 
