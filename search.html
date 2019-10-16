@@ -1,7 +1,8 @@
-<HTML><HEAD><TITLE>benso</TITLE>
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>benso</TITLE>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
-<SCRIPT LANGUAGE="JavaScript">
-</SCRIPT>
 
 <script>
 function  showvalf(){  
@@ -15,26 +16,62 @@ function  showvalf(){
 		}
 		//document.write(theRequest.que);
 	}
+//var goog = "https://seeres.com/search?q="+theRequest.que;
+//var baid = "https://www.baidu.com/s?wd="+theRequest.que;
 var goog = "https://seeres.com/search?q="+theRequest.que;
-var baid = "https://www.baidu.com/s?wd="+theRequest.que;
+var baid = "https://seeres.com/search?q="+theRequest.que;
 document.getElementById('bai').src=baid;
 document.getElementById('goo').src=goog;
 }
+
+function getCookie(){
+
+	var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次decodeRUI解码
+	var theRequest = new Object();
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		strs = str.split("&");
+		for (var i = 0; i < strs.length; i++) {
+			theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+		}
+	}
+
+	
+	var name = "searchEngineSet=";
+	var ca = document.cookie.split(';');
+	var cadot;
+	var engine = {google:"https://seeres.com/search?q="+theRequest.que, 
+	chn:"http://www.chinaso.com/search/pagesearch.htm?q="+theRequest.que, 
+	sougou:"https://www.sogou.com/web?query="+theRequest.que,
+	baidu:"https://www.baidu.com/s?wd="+theRequest.que};
+	
+	cadot = ca[0].trim().substring(name.length);
+	var cadotSet = cadot.split(',');
+	var selectEng = ["goo", "bai"];
+	var indexs=0;
+	for(var i=0; i<cadotSet.length; i++) {
+		var c = cadotSet[i].trim();
+		console.log(c+",接口："+engine[c]);
+		document.getElementById(selectEng[indexs]).src=engine[c];
+		indexs = indexs==0? 1:0;
+	}
+}
+window.onload=getCookie
 </script>
+</HEAD>
 
-
-<FRAMESET id=waa rows=41,* frameSpacing=0 frameBorder=0 border=0 bordercolor="#3E77B3">
+<FRAMESET id=waa rows=41,* frameSpacing=0 frameBorder=0 border=0 bordercolor="#3E77B3"  >
  <FRAME id=qw border=0 name=poptoolsbar frameSpacing=0 src="head.html" frameBorder=NO scrolling=no</FRAME>
 
-<FRAMESET id=baigoo cols=50%,11,* bordercolor="#3E77B3" id=myFrame onload="showvalf()">
+<FRAMESET id=baigoo cols=50%,11,* bordercolor="#3E77B3" id=myFrame onload="getCookie()">
   <FRAME id=goo class=a src="" name=popforum bordercolor="#3E77B3" target="right">
-  <FRAME id=midd src="middle.htm" name=midFrame frameBorder=0 scrolling=no noResize bordercolor="#3E77B3">
+  <FRAME id=midd src="middle.html" name=midFrame frameBorder=0 scrolling=no noResize bordercolor="#3E77B3">
   <FRAME id=bai src="" name=popmain bordercolor="#3E77B3">
   </FRAMESET>
   
 </FRAMESET>
   
-<DIV style="DISPLAY: none">
+<DIV style="DISPLAY: none" >
 <A href="https://github.com/yijiesun">syj</A>
 <A href="https://github.com/yijiesun" >syj</A>
 </DIV>
