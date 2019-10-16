@@ -235,7 +235,7 @@ DIV.rbox2 DIV.linkbox FORM {
 <IMG height=36 alt=GO src="images/jt.gif" 
 width=44> 
 <INPUT id=kw 
-maxLength=2048 size=42 name="que" autocomplete="off" color:Silver> 
+maxLength=2048 size=42 name="que" value="" autocomplete="off" color:Silver> 
 <INPUT id=sb type=submit value=GO name=submit onclick="beginGet()"> <SPAN 
 id=hp></SPAN> 
 </FORM></DIV>
@@ -290,8 +290,11 @@ function beginGet() {
 				else
 					cookTxt+=",";
             }
-			console.log(cookTxt);
+			
 			document.cookie = cookTxt;
+			var cookTxt2 = "searchContent="+parent.kw.value+";";
+			document.cookie = cookTxt2;
+			//console.log(cookTxt2);
         }
 </script>
 

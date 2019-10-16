@@ -25,7 +25,7 @@ document.getElementById('goo').src=goog;
 }
 
 function getCookie(){
-
+	console.log(document.cookie);
 	var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次decodeRUI解码
 	var theRequest = new Object();
 	if (url.indexOf("?") != -1) {
@@ -36,18 +36,17 @@ function getCookie(){
 		}
 	}
 
-	
-	var name = "searchEngineSet=";
-	var ca = document.cookie.split(';');
-	var cadot;
 	var engine = {google:"https://seeres.com/search?q="+theRequest.que, 
 	chn:"http://www.chinaso.com/search/pagesearch.htm?q="+theRequest.que, 
 	sougou:"https://www.sogou.com/web?query="+theRequest.que,
 	baidu:"https://www.baidu.com/s?wd="+theRequest.que};
 	
+	var name = "searchEngineSet=";
+	var ca = document.cookie.split(';');
+	var cadot;
 	cadot = ca[0].trim().substring(name.length);
 	var cadotSet = cadot.split(',');
-	var selectEng = ["goo", "bai"];
+	var selectEng = ["left", "right"];
 	var indexs=0;
 	for(var i=0; i<cadotSet.length; i++) {
 		var c = cadotSet[i].trim();
@@ -63,10 +62,10 @@ window.onload=getCookie
 <FRAMESET id=waa rows=41,* frameSpacing=0 frameBorder=0 border=0 bordercolor="#3E77B3"  >
  <FRAME id=qw border=0 name=poptoolsbar frameSpacing=0 src="head.html" frameBorder=NO scrolling=no</FRAME>
 
-<FRAMESET id=baigoo cols=50%,11,* bordercolor="#3E77B3" id=myFrame onload="getCookie()">
-  <FRAME id=goo class=a src="" name=popforum bordercolor="#3E77B3" target="right">
+<FRAMESET id=myFrame cols=50%,11,* bordercolor="#3E77B3" onload="getCookie()">
+  <FRAME id=left class=a src="" name=popforum bordercolor="#3E77B3" target="right">
   <FRAME id=midd src="middle.html" name=midFrame frameBorder=0 scrolling=no noResize bordercolor="#3E77B3">
-  <FRAME id=bai src="" name=popmain bordercolor="#3E77B3">
+  <FRAME id=right src="" name=popmain bordercolor="#3E77B3">
   </FRAMESET>
   
 </FRAMESET>
